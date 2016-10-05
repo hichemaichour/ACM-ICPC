@@ -1,0 +1,10 @@
+1) Earth		Recurssion
+2) HeliX		Ad-Hock
+3-) Alpha		No Clue :)
+4-) Sort		BFS - Memory Limit Exceeded
+5) Johnny		Ad-Hock
+6-) Apple		Recurssion + linked trees (Data Structures) - Space Limit Exceeded
+7) Clock		MTH
+8) Chop			Recurssion
+9) Logo			Ad-Hock
+10) Three		Prime Generator (Holy Book)

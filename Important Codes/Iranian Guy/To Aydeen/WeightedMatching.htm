@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head>
+
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8"><title>C++ code colored by C++2HTML</title>
+
+<meta name="generator" content="C++2HTML by Jasper Bedaux"><!-- To generate your own colored code visit http://www.bedaux.net/cpp2html/ -->
+
+<style type="text/css">
+.comment { color: #999999; font-style: italic; }
+.pre { color: #000099; }
+.string { color: #009900; }
+.char { color: #009900; }
+.float { color: #996600; }
+.int { color: #999900; }
+.bool { color: #000000; font-weight: bold; }
+.type { color: #FF6633; }
+.flow { color: #FF0000; }
+.keyword { color: #990000; }
+.operator { color: #663300; font-weight: bold; }
+</style></head><body>
+<pre><span class="keyword">struct</span> WeightedMatching<span class="operator">{</span><span class="type">
+  int</span> n<span class="operator">,</span>e<span class="operator">[</span>MAX_N<span class="operator">][</span>MAX_N<span class="operator">],</span>lab<span class="operator">[</span><span class="int">2</span><span class="operator">][</span>MAX_N<span class="operator">],</span>hus<span class="operator">[</span>MAX_N<span class="operator">];</span><span class="type">
+  bool</span> mark<span class="operator">[</span><span class="int">2</span><span class="operator">][</span>MAX_N<span class="operator">],</span>used<span class="operator">[</span>MAX_N<span class="operator">];</span>
+  WeightedMatching<span class="operator">(</span><span class="type">int</span> s<span class="operator">){</span>
+    n<span class="operator">=</span>s<span class="operator">;</span><span class="flow">
+    for</span><span class="operator"> (</span><span class="type">int</span> i<span class="operator">=</span><span class="int">0</span><span class="operator">;</span>i<span class="operator">&lt;</span>MAX_N<span class="operator">;</span>i<span class="operator">++)</span> fill<span class="operator">(</span>e<span class="operator">[</span>i<span class="operator">],</span>e<span class="operator">[</span>i<span class="operator">]+</span>MAX_N<span class="operator">,</span><span class="int">0</span><span class="operator">);</span>
+    fill<span class="operator">(</span>used<span class="operator">,</span>used<span class="operator">+</span>MAX_N<span class="operator">,</span><span class="bool">false</span><span class="operator">);</span>
+    fill<span class="operator">(</span>hus<span class="operator">,</span>hus<span class="operator">+</span>MAX_N<span class="operator">,</span><span class="int">0</span><span class="operator">);</span><span class="flow">
+    for</span><span class="operator"> (</span><span class="type">int</span> i<span class="operator">=</span><span class="int">0</span><span class="operator">;</span>i<span class="operator">&lt;=</span><span class="int">1</span><span class="operator">;</span>i<span class="operator">++){</span> fill<span class="operator">(</span>lab<span class="operator">[</span>i<span class="operator">],</span>lab<span class="operator">[</span>i<span class="operator">]+</span>MAX_N<span class="operator">,</span><span class="int">0</span><span class="operator">);</span> fill<span class="operator">(</span>mark<span class="operator">[</span>i<span class="operator">],</span>mark<span class="operator">[</span>i<span class="operator">]+</span>MAX_N<span class="operator">,</span><span class="bool">false</span><span class="operator">);
+    }
+  }</span><span class="keyword">
+
+  inline</span><span class="type"> bool</span> find<span class="operator">(</span><span class="type">int</span> s<span class="operator">){</span><span class="flow">
+    if</span><span class="operator"> (</span>mark<span class="operator">[</span><span class="int">0</span><span class="operator">][</span>s<span class="operator">])</span><span class="flow"> return</span><span class="operator">(</span><span class="bool">false</span><span class="operator">);</span>
+    mark<span class="operator">[</span><span class="int">0</span><span class="operator">][</span>s<span class="operator">]=</span><span class="bool">true</span><span class="operator">;</span><span class="flow">
+    for</span><span class="operator"> (</span><span class="type">int</span> i<span class="operator">=</span><span class="int">1</span><span class="operator">;</span>i<span class="operator">&lt;=</span>n<span class="operator">;</span>i<span class="operator">++)</span><span class="flow"> if</span><span class="operator"> (</span>lab<span class="operator">[</span><span class="int">0</span><span class="operator">][</span>s<span class="operator">]+</span>lab<span class="operator">[</span><span class="int">1</span><span class="operator">][</span>i<span class="operator">]==</span>e<span class="operator">[</span>s<span class="operator">][</span>i<span class="operator">]){</span>
+      mark<span class="operator">[</span><span class="int">1</span><span class="operator">][</span>i<span class="operator">]=</span><span class="bool">true</span><span class="operator">;</span><span class="flow">
+      if</span><span class="operator"> (!</span>hus<span class="operator">[</span>i<span class="operator">] || (</span>hus<span class="operator">[</span>i<span class="operator">] &amp;&amp;</span> find<span class="operator">(</span>hus<span class="operator">[</span>i<span class="operator">]))){</span>
+	hus<span class="operator">[</span>i<span class="operator">]=</span>s<span class="operator">;</span><span class="flow">
+	return</span><span class="operator">(</span><span class="bool">true</span><span class="operator">);
+      }
+    }</span><span class="flow">
+    return</span><span class="operator">(</span><span class="bool">false</span><span class="operator">);
+  }</span><span class="type">
+
+  int</span> MaxMatching<span class="operator">(){</span><span class="flow">
+    for</span><span class="operator"> (</span><span class="type">int</span> i<span class="operator">=</span><span class="int">1</span><span class="operator">;</span>i<span class="operator">&lt;=</span>n<span class="operator">;</span>i<span class="operator">++)</span><span class="flow"> for</span><span class="operator"> (</span><span class="type">int</span> j<span class="operator">=</span><span class="int">1</span><span class="operator">;</span>j<span class="operator">&lt;=</span>n<span class="operator">;</span>j<span class="operator">++)</span> lab<span class="operator">[</span><span class="int">1</span><span class="operator">][</span>j<span class="operator">]=</span>max<span class="operator">(</span>lab<span class="operator">[</span><span class="int">1</span><span class="operator">][</span>j<span class="operator">],</span>e<span class="operator">[</span>i<span class="operator">][</span>j<span class="operator">]);</span><span class="flow">
+
+    for</span><span class="operator"> (</span><span class="type">int</span> count<span class="operator">=</span><span class="int">1</span><span class="operator">;</span>count<span class="operator">&lt;=</span>n<span class="operator">;</span>count<span class="operator">++){</span><span class="type">
+      bool</span> Find<span class="operator">=</span><span class="bool">false</span><span class="operator">;</span><span class="flow">
+      while</span><span class="operator"> (!</span>Find<span class="operator">){</span><span class="flow">
+	for</span><span class="operator"> (</span><span class="type">int</span> i<span class="operator">=</span><span class="int">0</span><span class="operator">;</span>i<span class="operator">&lt;=</span><span class="int">1</span><span class="operator">;</span>i<span class="operator">++)</span><span class="flow"> for</span><span class="operator"> (</span><span class="type">int</span> j<span class="operator">=</span><span class="int">1</span><span class="operator">;</span>j<span class="operator">&lt;=</span>n<span class="operator">;</span>j<span class="operator">++)</span> mark<span class="operator">[</span>i<span class="operator">][</span>j<span class="operator">]=</span><span class="bool">false</span><span class="operator">;</span><span class="flow">
+
+	for</span><span class="operator"> (</span><span class="type">int</span> i<span class="operator">=</span><span class="int">1</span><span class="operator">;</span>i<span class="operator">&lt;=</span>n<span class="operator">;</span>i<span class="operator">++)</span><span class="flow"> if</span><span class="operator"> (!</span>used<span class="operator">[</span>i<span class="operator">] &amp;&amp;</span> find<span class="operator">(</span>i<span class="operator">)){</span>
+	  used<span class="operator">[</span>i<span class="operator">]=</span><span class="bool">true</span><span class="operator">;</span>
+	  Find<span class="operator">=</span><span class="bool">true</span><span class="operator">;</span><span class="flow">
+	  break</span><span class="operator">;
+	}</span><span class="flow">
+	if</span><span class="operator"> (</span>Find<span class="operator">)</span><span class="flow"> break</span><span class="operator">;</span><span class="type">
+	int</span> kam<span class="operator">=</span>INF<span class="operator">;</span><span class="flow">
+	for</span><span class="operator"> (</span><span class="type">int</span> i<span class="operator">=</span><span class="int">1</span><span class="operator">;</span>i<span class="operator">&lt;=</span>n<span class="operator">;</span>i<span class="operator">++)</span><span class="flow"> if</span><span class="operator"> (</span>mark<span class="operator">[</span><span class="int">0</span><span class="operator">][</span>i<span class="operator">])</span><span class="flow">
+	  for</span><span class="operator"> (</span><span class="type">int</span> j<span class="operator">=</span><span class="int">1</span><span class="operator">;</span>j<span class="operator">&lt;=</span>n<span class="operator">;</span>j<span class="operator">++)</span><span class="flow"> if</span><span class="operator"> (!</span>mark<span class="operator">[</span><span class="int">1</span><span class="operator">][</span>j<span class="operator">])</span>
+	    kam<span class="operator">=</span>min<span class="operator">(</span>kam<span class="operator">,</span>lab<span class="operator">[</span><span class="int">0</span><span class="operator">][</span>i<span class="operator">]+</span>lab<span class="operator">[</span><span class="int">1</span><span class="operator">][</span>j<span class="operator">]-</span>e<span class="operator">[</span>i<span class="operator">][</span>j<span class="operator">]);</span><span class="flow">
+
+	for</span><span class="operator"> (</span><span class="type">int</span> i<span class="operator">=</span><span class="int">1</span><span class="operator">;</span>i<span class="operator">&lt;=</span>n<span class="operator">;</span>i<span class="operator">++){</span><span class="flow">
+	  if</span><span class="operator"> (</span>mark<span class="operator">[</span><span class="int">0</span><span class="operator">][</span>i<span class="operator">])</span> lab<span class="operator">[</span><span class="int">0</span><span class="operator">][</span>i<span class="operator">]-=</span>kam<span class="operator">;</span><span class="flow">
+	  if</span><span class="operator"> (</span>mark<span class="operator">[</span><span class="int">1</span><span class="operator">][</span>i<span class="operator">])</span> lab<span class="operator">[</span><span class="int">1</span><span class="operator">][</span>i<span class="operator">]+=</span>kam<span class="operator">;
+	}
+	
+      }
+    }</span><span class="type">
+    int</span> sum<span class="operator">=</span><span class="int">0</span><span class="operator">;</span><span class="flow">
+    for</span><span class="operator"> (</span><span class="type">int</span> i<span class="operator">=</span><span class="int">1</span><span class="operator">;</span>i<span class="operator">&lt;=</span>n<span class="operator">;</span>i<span class="operator">++)</span> sum<span class="operator">+=</span>e<span class="operator">[</span>hus<span class="operator">[</span>i<span class="operator">]][</span>i<span class="operator">];</span><span class="flow">
+    return</span><span class="operator">(</span>sum<span class="operator">);
+  }
+};</span>
+</pre>
+
+</body></html>

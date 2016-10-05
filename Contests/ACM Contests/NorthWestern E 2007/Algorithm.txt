@@ -1,0 +1,10 @@
+1)  Assemble		Binary Search
+2)  Penguins		Max Flow
+3)  Containers		Ad-Hock
+4-) Dorm			Recurssion
+5)  Enemy			BFS + Binary Search
+6-) Flight			
+7-) Summits			
+8-) Obfuscation		Recurssion
+9)  Parking			Simulation
+10-)Walk			

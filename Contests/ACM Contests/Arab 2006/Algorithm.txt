@@ -1,0 +1,9 @@
+1) Smarty		Ad-Hock
+2) Tetris		Brute Foce
+3) Blocks		map + Ad-Hock
+4) Walk			MTH
+5) Sahara		map + Ad-Hock
+6) Johnny		2 algorithms (Brute Force + Greedy)
+7-) Tree		Holy Book
+8-) A-to-Z		Suffix Tree + Prefix Tree
+9) Nines		Ad-Hock + int is not enough

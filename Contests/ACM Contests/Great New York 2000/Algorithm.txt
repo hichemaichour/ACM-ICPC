@@ -1,0 +1,8 @@
+1) e				Ad-Hock
+2-) Bee				Math - It matches the output of the judges but doesnt want to be accepted (Wrong Answer)
+3) Roots			Ad-Hock
+4) Sort				Ad-Hock + Algorithm
+5) Well-Formed			Ad-Hock
+6) Entropy			Recurssion
+7) Mazes			Recurssion
+8) SPF				Recurssion + Brute Force

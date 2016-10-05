@@ -1,0 +1,10 @@
+1) Judging		Ad-hock
+2) Hide			Ad-Hock
+3) Rings		Ad-Hock
+4) Moon			Ad-Hock
+5) Fermat		MTH + Holy Book(prime #)
+6-)Points		Geometry
+7-)Movies		Graph
+8) Club			BFS
+9-)Sticks		Recurssion
+10-) Johnny		Recurssion + DP

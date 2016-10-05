@@ -1,0 +1,9 @@
+1-) Pascal Travel		Dynamic
+2) Bookshelf			Simulation
+3) Connect				Geometry
+4) Copier				Ad-Hock
+5-) Graduate			
+6-) Painter				
+7-) Digits				
+8) Lizards				Max Flow
+9) Netiquette			Brute Force + Ad-Hock

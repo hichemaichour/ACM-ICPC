@@ -1,0 +1,10 @@
+1)   seinfeld	Stack || Ad Hock
+2)   Tiles		Ad Hock
+3)   Flat		Prime Factorization
+4)   One		Ad Hock
+5)   Hop		BFS
+6)   Air		Geometry
+7)   Stock		BFS
+8)   Land		Recurssion
+9)   Blur		System of Equations
+10)  National	Complete Bipartite

@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head>
+
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8"><title>C++ code colored by C++2HTML</title>
+
+<meta name="generator" content="C++2HTML by Jasper Bedaux"><!-- To generate your own colored code visit http://www.bedaux.net/cpp2html/ -->
+
+<style type="text/css">
+.comment { color: #999999; font-style: italic; }
+.pre { color: #000099; }
+.string { color: #009900; }
+.char { color: #009900; }
+.float { color: #996600; }
+.int { color: #999900; }
+.bool { color: #000000; font-weight: bold; }
+.type { color: #FF6633; }
+.flow { color: #FF0000; }
+.keyword { color: #990000; }
+.operator { color: #663300; font-weight: bold; }
+</style></head><body>
+<pre><span class="keyword">typedef</span> complex<span class="operator">&lt;</span><span class="type">double</span><span class="operator">&gt;</span> Point<span class="operator">;</span><span class="keyword">
+typedef</span> pair<span class="operator">&lt;</span><span class="type">int</span><span class="operator">,</span><span class="type">int</span><span class="operator">&gt;</span>   Pair<span class="operator">;</span><span class="keyword">
+
+const</span><span class="type"> double</span> EPS<span class="operator">=</span><span class="float">1e-6</span><span class="operator">;</span><span class="keyword">
+const</span> Point Change<span class="operator">(</span>cos<span class="operator">(</span><span class="int">13</span><span class="operator">),</span>sin<span class="operator">(</span><span class="int">13</span><span class="operator">));</span><span class="comment"> // With love
+</span><span class="keyword">
+namespace</span> std<span class="operator">{</span><span class="type">
+  bool</span><span class="keyword"> operator</span><span class="operator"> &lt; (</span><span class="keyword">const</span> Point<span class="operator"> &amp;</span>a<span class="operator">,</span><span class="keyword">const</span> Point<span class="operator"> &amp;</span>b<span class="operator">){</span><span class="flow">
+    if</span><span class="operator"> (</span>abs<span class="operator">(</span>a<span class="operator">.</span>real<span class="operator">()-</span>b<span class="operator">.</span>real<span class="operator">()) &gt;</span> EPS<span class="operator">)</span><span class="flow"> return</span><span class="operator">(</span>a<span class="operator">.</span>real<span class="operator">() &lt;</span> b<span class="operator">.</span>real<span class="operator">());</span><span class="flow">
+    if</span><span class="operator"> (</span>abs<span class="operator">(</span>a<span class="operator">.</span>imag<span class="operator">()-</span>b<span class="operator">.</span>imag<span class="operator">()) &gt;</span> EPS<span class="operator">)</span><span class="flow"> return</span><span class="operator">(</span>a<span class="operator">.</span>imag<span class="operator">() &lt;</span> b<span class="operator">.</span>imag<span class="operator">());</span><span class="flow">
+    return</span><span class="operator">(</span><span class="bool">false</span><span class="operator">);
+  }
+}</span>
+
+vector<span class="operator">&lt;</span>Point<span class="operator">&gt;</span> __first<span class="operator">,</span>__second<span class="operator">;</span><span class="keyword">
+struct</span> Lines<span class="operator">{</span><span class="keyword">
+  struct</span> Cmp<span class="operator">{</span><span class="keyword">
+    inline static</span><span class="type"> bool</span> is_intersection<span class="operator">(</span><span class="keyword">const</span> Point<span class="operator"> &amp;</span>a1<span class="operator">,</span><span class="keyword">const</span> Point<span class="operator"> &amp;</span>b1<span class="operator">,</span>Point a2<span class="operator">,</span>Point b2<span class="operator">){</span>
+      a2<span class="operator">=(</span>a2<span class="operator">-</span>a1<span class="operator">)/(</span>b1<span class="operator">-</span>a1<span class="operator">);</span> b2<span class="operator">=(</span>b2<span class="operator">-</span>a1<span class="operator">)/(</span>b1<span class="operator">-</span>a1<span class="operator">);</span><span class="flow">
+      if</span><span class="operator"> (</span>min<span class="operator">(</span>a2<span class="operator">.</span>imag<span class="operator">(),</span>b2<span class="operator">.</span>imag<span class="operator">()) &gt;</span> EPS<span class="operator">)</span><span class="flow"> return</span><span class="operator">(</span><span class="bool">false</span><span class="operator">);</span><span class="flow">
+      if</span><span class="operator"> (</span>max<span class="operator">(</span>a2<span class="operator">.</span>imag<span class="operator">(),</span>b2<span class="operator">.</span>imag<span class="operator">()) &lt; -</span>EPS<span class="operator">)</span><span class="flow"> return</span><span class="operator">(</span><span class="bool">false</span><span class="operator">);</span><span class="flow">
+      if</span><span class="operator"> (</span>abs<span class="operator">(</span>a2<span class="operator">.</span>imag<span class="operator">()-</span>b2<span class="operator">.</span>imag<span class="operator">()) &lt;</span> EPS<span class="operator">)</span><span class="flow"> return</span><span class="operator">(</span><span class="bool">false</span><span class="operator">);</span>
+      Point ans<span class="operator">=</span>a2<span class="operator">+(</span>b2<span class="operator">-</span>a2<span class="operator">)*(</span>a2<span class="operator">.</span>imag<span class="operator">()/(</span>a2<span class="operator">-</span>b2<span class="operator">).</span>imag<span class="operator">());</span><span class="flow">
+      if</span><span class="operator"> (</span>ans<span class="operator">.</span>real<span class="operator">() &lt; -</span>EPS<span class="operator"> ||</span> ans<span class="operator">.</span>real<span class="operator">() &gt;</span><span class="int"> 1</span><span class="operator">+</span>EPS<span class="operator">)</span><span class="flow"> return</span><span class="operator">(</span><span class="bool">false</span><span class="operator">);</span><span class="flow">
+      return</span><span class="operator">(</span><span class="bool">true</span><span class="operator">);
+    }</span><span class="type">
+    bool</span><span class="keyword"> operator</span><span class="operator"> () (</span><span class="type">int</span> s<span class="operator">,</span><span class="type">int</span> t<span class="operator">)</span><span class="keyword">const</span><span class="operator">{</span><span class="flow">
+      if</span><span class="operator"> (</span>is_intersection<span class="operator">(</span>__first<span class="operator">[</span>s<span class="operator">],</span>__second<span class="operator">[</span>s<span class="operator">],</span>__first<span class="operator">[</span>t<span class="operator">],</span>__second<span class="operator">[</span>t<span class="operator">]))</span><span class="flow"> throw</span><span class="operator">(</span><span class="string">"Intersection :D"</span><span class="operator">);</span><span class="type">
+      double</span> eq<span class="operator">=</span>max<span class="operator">(</span>__first<span class="operator">[</span>s<span class="operator">].</span>real<span class="operator">(),</span>__first<span class="operator">[</span>t<span class="operator">].</span>real<span class="operator">());</span><span class="type">
+      double</span> a<span class="operator">=</span>__first<span class="operator">[</span>s<span class="operator">].</span>imag<span class="operator">()+((</span>eq<span class="operator">-</span>__first<span class="operator">[</span>s<span class="operator">].</span>real<span class="operator">())/
+				  (</span>__second<span class="operator">[</span>s<span class="operator">].</span>real<span class="operator">()-</span>__first<span class="operator">[</span>s<span class="operator">].</span>real<span class="operator">()))*(</span>__second<span class="operator">[</span>s<span class="operator">].</span>imag<span class="operator">()-</span>__first<span class="operator">[</span>s<span class="operator">].</span>imag<span class="operator">());</span><span class="type">
+      double</span> b<span class="operator">=</span>__first<span class="operator">[</span>t<span class="operator">].</span>imag<span class="operator">()+((</span>eq<span class="operator">-</span>__first<span class="operator">[</span>t<span class="operator">].</span>real<span class="operator">())/
+				  (</span>__second<span class="operator">[</span>t<span class="operator">].</span>real<span class="operator">()-</span>__first<span class="operator">[</span>t<span class="operator">].</span>real<span class="operator">()))*(</span>__second<span class="operator">[</span>t<span class="operator">].</span>imag<span class="operator">()-</span>__first<span class="operator">[</span>t<span class="operator">].</span>imag<span class="operator">());</span><span class="flow">
+      if</span><span class="operator"> (</span>abs<span class="operator">(</span>eq<span class="operator">) &lt;</span> EPS<span class="operator">)</span><span class="flow"> throw</span><span class="operator">(</span><span class="string">"Intersection :D"</span><span class="operator">);</span><span class="flow">
+      return</span><span class="operator">(</span>a<span class="operator"> &lt;</span> b<span class="operator">);
+    }
+  };</span>
+  vector<span class="operator">&lt;</span>Point<span class="operator">&gt;</span> first<span class="operator">,</span>second<span class="operator">;</span><span class="type">
+  void</span> push_back<span class="operator">(</span>Point a<span class="operator">,</span>Point b<span class="operator">){</span><span class="flow">
+    if</span><span class="operator"> (</span>abs<span class="operator">(</span>a<span class="operator">-</span>b<span class="operator">) &gt;</span> EPS<span class="operator">){</span>
+      a<span class="operator">*=</span>Change<span class="operator">;</span> b<span class="operator">*=</span>Change<span class="operator">;</span><span class="flow">
+      if</span><span class="operator"> (</span>b<span class="operator"> &lt;</span> a<span class="operator">)</span> swap<span class="operator">(</span>a<span class="operator">,</span>b<span class="operator">);</span>
+      first<span class="operator">.</span>push_back<span class="operator">(</span>a<span class="operator">);</span>
+      second<span class="operator">.</span>push_back<span class="operator">(</span>b<span class="operator">);
+    }
+  }</span><span class="keyword">
+  static</span><span class="type"> double</span> get<span class="operator">(</span>Pair s<span class="operator">){</span><span class="flow">
+    if</span><span class="operator"> (</span>s<span class="operator">.</span>second<span class="operator"> ==</span><span class="int"> 0</span><span class="operator">)</span><span class="flow"> return</span><span class="operator">(</span>__first<span class="operator">[</span>s<span class="operator">.</span>first<span class="operator">].</span>real<span class="operator">());</span><span class="flow">
+    else return</span><span class="operator">(</span>__second<span class="operator">[</span>s<span class="operator">.</span>first<span class="operator">].</span>real<span class="operator">());
+  }</span><span class="keyword">
+  static</span><span class="type"> bool</span> dif<span class="operator">(</span>Pair s<span class="operator">,</span>Pair t<span class="operator">){</span><span class="type">
+    double</span> a<span class="operator">=</span>get<span class="operator">(</span>s<span class="operator">),</span>b<span class="operator">=</span>get<span class="operator">(</span>t<span class="operator">);</span><span class="flow">
+    if</span><span class="operator"> (</span>abs<span class="operator">(</span>a<span class="operator">-</span>b<span class="operator">) &gt;</span> EPS<span class="operator">)</span><span class="flow"> return</span><span class="operator">(</span>a<span class="operator"> &lt;</span> b<span class="operator">);</span><span class="flow">
+    return</span><span class="operator">(</span>s<span class="operator"> &lt;</span> t<span class="operator">);
+  }</span><span class="keyword">
+  inline</span><span class="type"> bool</span> HaveIntersection<span class="operator">(){</span>
+    set<span class="operator">&lt;</span>Point<span class="operator">&gt;</span> Set<span class="operator">;</span><span class="flow">
+    for</span><span class="operator"> (</span><span class="type">int</span> i<span class="operator">=</span><span class="int">0</span><span class="operator">;</span>i<span class="operator">&lt;</span>first<span class="operator">.</span>size<span class="operator">();</span>i<span class="operator">++){</span>
+      Set<span class="operator">.</span>insert<span class="operator">(</span>first<span class="operator">[</span>i<span class="operator">]);</span> Set<span class="operator">.</span>insert<span class="operator">(</span>second<span class="operator">[</span>i<span class="operator">]);
+    }</span><span class="flow">
+    if</span><span class="operator"> (</span>Set<span class="operator">.</span>size<span class="operator">() !=</span><span class="int"> 2</span><span class="operator">*</span>first<span class="operator">.</span>size<span class="operator">())</span><span class="flow"> return</span><span class="operator">(</span><span class="bool">true</span><span class="operator">);</span>
+    vector<span class="operator">&lt;</span>Pair<span class="operator">&gt;</span> all<span class="operator">;</span><span class="flow">
+    for</span><span class="operator"> (</span><span class="type">int</span> i<span class="operator">=</span><span class="int">0</span><span class="operator">;</span>i<span class="operator">&lt;</span>first<span class="operator">.</span>size<span class="operator">();</span>i<span class="operator">++){</span>
+      all<span class="operator">.</span>push_back<span class="operator">(</span>Pair<span class="operator">(</span>i<span class="operator">,</span><span class="int">0</span><span class="operator">));</span>
+      all<span class="operator">.</span>push_back<span class="operator">(</span>Pair<span class="operator">(</span>i<span class="operator">,</span><span class="int">1</span><span class="operator">));
+    }</span>
+    __first<span class="operator">=</span>first<span class="operator">;</span> __second<span class="operator">=</span>second<span class="operator">;</span>
+    sort<span class="operator">(</span>all<span class="operator">.</span>begin<span class="operator">(),</span>all<span class="operator">.</span>end<span class="operator">(),</span>dif<span class="operator">);</span><span class="flow">
+    try</span><span class="operator">{</span>
+      set<span class="operator">&lt;</span><span class="type">int</span><span class="operator">,</span>Cmp<span class="operator">&gt;</span> Set<span class="operator">;</span><span class="flow">
+      for</span><span class="operator"> (</span><span class="type">int</span> i<span class="operator">=</span><span class="int">0</span><span class="operator">;</span>i<span class="operator">&lt;</span>all<span class="operator">.</span>size<span class="operator">();</span>i<span class="operator">++){</span><span class="flow">
+	if</span><span class="operator"> (</span>all<span class="operator">[</span>i<span class="operator">].</span>second<span class="operator"> ==</span><span class="int"> 1</span><span class="operator">)</span> Set<span class="operator">.</span>erase<span class="operator">(</span>all<span class="operator">[</span>i<span class="operator">].</span>first<span class="operator">);</span>
+	set<span class="operator">&lt;</span><span class="type">int</span><span class="operator">,</span>Cmp<span class="operator">&gt; ::</span> iterator pointer<span class="operator">=</span>Set<span class="operator">.</span>lower_bound<span class="operator">(</span>all<span class="operator">[</span>i<span class="operator">].</span>first<span class="operator">);</span><span class="flow">
+	if</span><span class="operator"> (</span>pointer<span class="operator"> !=</span> Set<span class="operator">.</span>end<span class="operator">())</span> Cmp<span class="operator">()(*</span>pointer<span class="operator">,</span>all<span class="operator">[</span>i<span class="operator">].</span>first<span class="operator">);</span><span class="flow">
+	if</span><span class="operator"> (</span>pointer<span class="operator"> !=</span> Set<span class="operator">.</span>begin<span class="operator">()){</span>
+	  pointer<span class="operator">--;</span>
+	  Cmp<span class="operator">()(*</span>pointer<span class="operator">,</span>all<span class="operator">[</span>i<span class="operator">].</span>first<span class="operator">);
+	}</span><span class="flow">
+	if</span><span class="operator"> (</span>all<span class="operator">[</span>i<span class="operator">].</span>second<span class="operator"> ==</span><span class="int"> 0</span><span class="operator">)</span> Set<span class="operator">.</span>insert<span class="operator">(</span>all<span class="operator">[</span>i<span class="operator">].</span>first<span class="operator">);
+      }
+    }</span><span class="flow">catch</span><span class="operator">(...){</span><span class="flow">
+      return</span><span class="operator">(</span><span class="bool">true</span><span class="operator">);
+    }</span><span class="flow">
+    return</span><span class="operator">(</span><span class="bool">false</span><span class="operator">);
+  }
+};</span>
+</pre>
+
+</body></html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head>
+
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8"><title>C++ code colored by C++2HTML</title>
+
+<meta name="generator" content="C++2HTML by Jasper Bedaux"><!-- To generate your own colored code visit http://www.bedaux.net/cpp2html/ -->
+
+<style type="text/css">
+.comment { color: #999999; font-style: italic; }
+.pre { color: #000099; }
+.string { color: #009900; }
+.char { color: #009900; }
+.float { color: #996600; }
+.int { color: #999900; }
+.bool { color: #000000; font-weight: bold; }
+.type { color: #FF6633; }
+.flow { color: #FF0000; }
+.keyword { color: #990000; }
+.operator { color: #663300; font-weight: bold; }
+</style></head><body>
+<pre><span class="keyword">namespace</span> std<span class="operator">{</span><span class="keyword">
+  inline</span><span class="type"> bool</span><span class="keyword"> operator</span><span class="operator"> &lt; (</span><span class="keyword">const</span> Point<span class="operator"> &amp;</span>s<span class="operator">,</span><span class="keyword">const</span> Point<span class="operator"> &amp;</span>t<span class="operator">){</span><span class="flow">
+    if</span><span class="operator"> (</span>abs<span class="operator">(</span>s<span class="operator">.</span>real<span class="operator">()-</span>t<span class="operator">.</span>real<span class="operator">()) &gt;</span> EPS<span class="operator">)</span><span class="flow"> return</span><span class="operator">(</span>s<span class="operator">.</span>real<span class="operator">() &lt;</span> t<span class="operator">.</span>real<span class="operator">());</span><span class="flow">
+    if</span><span class="operator"> (</span>abs<span class="operator">(</span>s<span class="operator">.</span>imag<span class="operator">()-</span>t<span class="operator">.</span>imag<span class="operator">()) &gt;</span> EPS<span class="operator">)</span><span class="flow"> return</span><span class="operator">(</span>s<span class="operator">.</span>imag<span class="operator">() &lt;</span> t<span class="operator">.</span>imag<span class="operator">());</span><span class="flow">
+    return</span><span class="operator">(</span><span class="bool">false</span><span class="operator">);
+  }
+}</span><span class="keyword">
+
+struct</span> line<span class="operator">{</span>
+  Point a<span class="operator">,</span>b<span class="operator">;</span>
+  line<span class="operator">(</span>Point x<span class="operator">,</span>Point y<span class="operator">){</span>
+    a<span class="operator">=</span>x<span class="operator">;</span>
+    b<span class="operator">=</span>y<span class="operator">;
+  }</span><span class="keyword">
+  inline</span><span class="type"> bool</span> is_on<span class="operator">(</span><span class="keyword">const</span> Point<span class="operator"> &amp;</span>s<span class="operator">)</span><span class="keyword">const</span><span class="operator">{</span>
+    Point A<span class="operator">=</span>a<span class="operator">,</span>B<span class="operator">=</span>b<span class="operator">,</span>C<span class="operator">=</span>s<span class="operator">;</span><span class="flow">
+    if</span><span class="operator"> (</span>B<span class="operator"> &lt;</span> A<span class="operator">)</span> swap<span class="operator">(</span>A<span class="operator">,</span>B<span class="operator">);</span><span class="flow">
+    if</span><span class="operator"> (</span>C<span class="operator"> &lt;</span> A<span class="operator">)</span> swap<span class="operator">(</span>A<span class="operator">,</span>C<span class="operator">);</span><span class="flow">
+    if</span><span class="operator"> (</span>C<span class="operator"> &lt;</span> B<span class="operator">)</span> swap<span class="operator">(</span>B<span class="operator">,</span>C<span class="operator">);</span><span class="flow">
+    return</span><span class="operator">(</span>abs<span class="operator">(</span>abs<span class="operator">(</span>A<span class="operator">-</span>C<span class="operator">)-</span>abs<span class="operator">(</span>A<span class="operator">-</span>B<span class="operator">)-</span>abs<span class="operator">(</span>B<span class="operator">-</span>C<span class="operator">)) &lt;</span> EPS<span class="operator">);
+  }</span>
+  vector<span class="operator">&lt;</span>Point<span class="operator">&gt;</span> intersection<span class="operator">(</span><span class="keyword">const</span> line<span class="operator"> &amp;</span>s<span class="operator">)</span><span class="keyword">const</span><span class="operator">;
+};</span>
+
+vector<span class="operator">&lt;</span>Point<span class="operator">&gt;</span> line<span class="operator">::</span>intersection<span class="operator">(</span><span class="keyword">const</span> line<span class="operator"> &amp;</span>s<span class="operator">)</span><span class="keyword">const</span><span class="operator">{</span>
+  Point A<span class="operator">=(</span>s<span class="operator">.</span>a<span class="operator">-</span>a<span class="operator">)/(</span>b<span class="operator">-</span>a<span class="operator">),</span>B<span class="operator">=(</span>s<span class="operator">.</span>b<span class="operator">-</span>a<span class="operator">)/(</span>b<span class="operator">-</span>a<span class="operator">);</span><span class="flow">
+  if</span><span class="operator"> (</span>abs<span class="operator">(</span>A<span class="operator">.</span>imag<span class="operator">()-</span>B<span class="operator">.</span>imag<span class="operator">()) &lt;</span> EPS<span class="operator">)</span><span class="flow"> return</span><span class="operator">(</span>vector<span class="operator">&lt;</span>Point<span class="operator">&gt;());</span>
+  vector<span class="operator">&lt;</span>Point<span class="operator">&gt;</span> ans<span class="operator">;</span>
+  ans<span class="operator">.</span>push_back<span class="operator">(</span>A<span class="operator">+(</span>B<span class="operator">-</span>A<span class="operator">)*(</span>A<span class="operator">.</span>imag<span class="operator">()/(</span>A<span class="operator">-</span>B<span class="operator">).</span>imag<span class="operator">()));</span><span class="flow">
+
+  for</span><span class="operator"> (</span><span class="type">int</span> i<span class="operator">=</span><span class="int">0</span><span class="operator">;</span>i<span class="operator">&lt;</span>ans<span class="operator">.</span>size<span class="operator">();</span>i<span class="operator">++)</span> ans<span class="operator">[</span>i<span class="operator">]=</span>ans<span class="operator">[</span>i<span class="operator">]*(</span>b<span class="operator">-</span>a<span class="operator">)+</span>a<span class="operator">;</span><span class="flow">
+  for</span><span class="operator"> (</span><span class="type">int</span> i<span class="operator">=</span><span class="int">0</span><span class="operator">;</span>i<span class="operator">&lt;</span>ans<span class="operator">.</span>size<span class="operator">();</span>i<span class="operator">++)</span><span class="flow"> if</span><span class="operator"> (!</span>is_on<span class="operator">(</span>ans<span class="operator">[</span>i<span class="operator">])){</span>
+    swap<span class="operator">(</span>ans<span class="operator">[</span>i<span class="operator">],</span>ans<span class="operator">.</span>back<span class="operator">());</span>
+    ans<span class="operator">.</span>pop_back<span class="operator">();
+  }</span><span class="flow">
+  return</span><span class="operator">(</span>ans<span class="operator">);
+}</span><span class="keyword">
+
+inline</span><span class="type"> bool</span> canSee<span class="operator">(</span>line a<span class="operator">,</span>Point x<span class="operator">){</span><span class="flow">
+  return</span><span class="operator">((</span>x<span class="operator">-</span>a<span class="operator">.</span>a<span class="operator">).</span>real<span class="operator">()*(</span>a<span class="operator">.</span>b<span class="operator">-</span>a<span class="operator">.</span>a<span class="operator">).</span>imag<span class="operator">()+</span>EPS<span class="operator"> &gt; (</span>a<span class="operator">.</span>b<span class="operator">-</span>a<span class="operator">.</span>a<span class="operator">).</span>real<span class="operator">()*(</span>x<span class="operator">-</span>a<span class="operator">.</span>a<span class="operator">).</span>imag<span class="operator">());
+}</span><span class="keyword">
+
+const</span><span class="type"> double</span> INF<span class="operator">=</span><span class="float">1e10</span><span class="operator">;</span><span class="keyword">
+
+struct</span> HalfLines<span class="operator">{</span>
+  vector<span class="operator">&lt;</span>line<span class="operator">&gt;</span> lines<span class="operator">;</span><span class="type">
+  void</span> push_back<span class="operator">(</span>line s<span class="operator">){</span>
+    lines<span class="operator">.</span>push_back<span class="operator">(</span>s<span class="operator">);
+  }</span><span class="type">
+  bool</span> haveIntersection<span class="operator">(){</span><span class="flow">
+    if</span><span class="operator"> (</span>lines<span class="operator">.</span>size<span class="operator">() ==</span><span class="int"> 0</span><span class="operator">)</span><span class="flow"> return</span><span class="operator">(</span><span class="bool">false</span><span class="operator">);</span><span class="flow">
+    if</span><span class="operator"> (</span>lines<span class="operator">.</span>size<span class="operator">() ==</span><span class="int"> 1</span><span class="operator">)</span><span class="flow"> return</span><span class="operator">(</span><span class="bool">true</span><span class="operator">);</span>
+
+    Point x<span class="operator">=</span>lines<span class="operator">[</span><span class="int">0</span><span class="operator">].</span>a<span class="operator">;</span><span class="flow">
+    for</span><span class="operator"> (</span><span class="type">int</span> i<span class="operator">=</span><span class="int">1</span><span class="operator">;</span>i<span class="operator">&lt;</span>lines<span class="operator">.</span>size<span class="operator">();</span>i<span class="operator">++){</span><span class="flow">
+      if</span><span class="operator"> (</span>canSee<span class="operator">(</span>lines<span class="operator">[</span>i<span class="operator">],</span>x<span class="operator">))</span><span class="flow"> continue</span><span class="operator">;</span><span class="type">
+      double</span> left<span class="operator">=-</span>INF<span class="operator">,</span>right<span class="operator">=</span>INF<span class="operator">;</span><span class="flow">
+      for</span><span class="operator"> (</span><span class="type">int</span> j<span class="operator">=</span><span class="int">0</span><span class="operator">;</span>j<span class="operator">&lt;</span>i<span class="operator">;</span>j<span class="operator">++){</span>
+	line temp<span class="operator">((</span>lines<span class="operator">[</span>j<span class="operator">].</span>a<span class="operator">-</span>lines<span class="operator">[</span>i<span class="operator">].</span>a<span class="operator">)/(</span>lines<span class="operator">[</span>i<span class="operator">].</span>b<span class="operator">-</span>lines<span class="operator">[</span>i<span class="operator">].</span>a<span class="operator">),
+		  (</span>lines<span class="operator">[</span>j<span class="operator">].</span>b<span class="operator">-</span>lines<span class="operator">[</span>i<span class="operator">].</span>a<span class="operator">)/(</span>lines<span class="operator">[</span>i<span class="operator">].</span>b<span class="operator">-</span>lines<span class="operator">[</span>i<span class="operator">].</span>a<span class="operator">));</span><span class="flow">
+	if</span><span class="operator"> (!</span>canSee<span class="operator">(</span>temp<span class="operator">,</span>Point<span class="operator">(</span>left<span class="operator">,</span><span class="int">0</span><span class="operator">))){</span>
+	  vector<span class="operator">&lt;</span>Point<span class="operator">&gt;</span> a<span class="operator">=</span>temp<span class="operator">.</span>intersection<span class="operator">(</span>line<span class="operator">(</span>Point<span class="operator">(</span><span class="int">0</span><span class="operator">,</span><span class="int">0</span><span class="operator">),</span>Point<span class="operator">(</span><span class="int">1</span><span class="operator">,</span><span class="int">0</span><span class="operator">)));</span><span class="flow">
+	  if</span><span class="operator"> (</span>a<span class="operator">.</span>size<span class="operator">() ==</span><span class="int"> 0</span><span class="operator">)</span><span class="flow"> return</span><span class="operator">(</span><span class="bool">false</span><span class="operator">);</span><span class="flow">
+	  else</span> left<span class="operator">=</span>max<span class="operator">(</span>left<span class="operator">,</span>a<span class="operator">[</span><span class="int">0</span><span class="operator">].</span>real<span class="operator">());
+	}</span><span class="flow">
+	if</span><span class="operator"> (!</span>canSee<span class="operator">(</span>temp<span class="operator">,</span>Point<span class="operator">(</span>right<span class="operator">,</span><span class="int">0</span><span class="operator">))){</span>
+	  vector<span class="operator">&lt;</span>Point<span class="operator">&gt;</span> a<span class="operator">=</span>temp<span class="operator">.</span>intersection<span class="operator">(</span>line<span class="operator">(</span>Point<span class="operator">(</span><span class="int">0</span><span class="operator">,</span><span class="int">0</span><span class="operator">),</span>Point<span class="operator">(</span><span class="int">1</span><span class="operator">,</span><span class="int">0</span><span class="operator">)));</span><span class="flow">
+	  if</span><span class="operator"> (</span>a<span class="operator">.</span>size<span class="operator">() ==</span><span class="int"> 0</span><span class="operator">)</span><span class="flow"> return</span><span class="operator">(</span><span class="bool">false</span><span class="operator">);</span><span class="flow">
+	  else</span>
+	    right<span class="operator">=</span>min<span class="operator">(</span>right<span class="operator">,</span>a<span class="operator">[</span><span class="int">0</span><span class="operator">].</span>real<span class="operator">());
+	}
+
+      }</span><span class="flow">
+      if</span><span class="operator"> (</span>left<span class="operator"> &lt;</span> right<span class="operator">+</span>EPS<span class="operator">)</span>
+	x<span class="operator">=</span>Point<span class="operator">(</span>left<span class="operator">,</span><span class="int">0</span><span class="operator">)*(</span>lines<span class="operator">[</span>i<span class="operator">].</span>b<span class="operator">-</span>lines<span class="operator">[</span>i<span class="operator">].</span>a<span class="operator">)+</span>lines<span class="operator">[</span>i<span class="operator">].</span>a<span class="operator">;</span><span class="flow">
+      else
+	return</span><span class="operator">(</span><span class="bool">false</span><span class="operator">);
+    }</span><span class="flow">
+    return</span><span class="operator">(</span><span class="bool">true</span><span class="operator">);
+  }</span><span class="keyword">
+  inline</span><span class="type"> void</span> print<span class="operator">(){</span><span class="flow">
+    for</span><span class="operator"> (</span><span class="type">int</span> i<span class="operator">=</span><span class="int">0</span><span class="operator">;</span>i<span class="operator">&lt;</span>lines<span class="operator">.</span>size<span class="operator">();</span>i<span class="operator">++)</span>
+      cout<span class="operator">&lt;&lt;</span>lines<span class="operator">[</span>i<span class="operator">].</span>a<span class="operator">&lt;&lt;</span><span class="char">' '</span><span class="operator">&lt;&lt;</span>lines<span class="operator">[</span>i<span class="operator">].</span>b<span class="operator">&lt;&lt;</span>endl<span class="operator">;</span>
+    cout<span class="operator">&lt;&lt;</span>endl<span class="operator">;
+  }
+};</span>
+</pre>
+
+</body></html>

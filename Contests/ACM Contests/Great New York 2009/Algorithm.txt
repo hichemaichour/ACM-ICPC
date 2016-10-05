@@ -1,0 +1,9 @@
+1) nth				STL (nth_element)
+2) Partitions		Greedy
+3) Balls			Ad-Hock
+4) Median			Ad-Hock
+5) Permutation		STL (next_permutation)
+6) Bit				Dynamic
+7) ConvexHull		Holy Book + Geometry
+8) Interior			Ad Hock + Geometry
+9) Theta			Bredth First

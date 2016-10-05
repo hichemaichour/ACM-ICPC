@@ -1,0 +1,9 @@
+1-) Consumption
+2-) Content
+3-) Laserbox
+4-) Bowlstack
+5-) Heros
+6-) ID
+7-) Tantrix
+8)  Gurdian				Maximum Independent Set in Bipartite Graph
+9-) Stairs				Ad-Hock + Simulation

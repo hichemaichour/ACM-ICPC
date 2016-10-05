@@ -1,0 +1,10 @@
+1) Tobo				BFS
+2) Sevens			Map & Ad Hock
+3-) Match			Recurssion
+4) Triangles			Brute Force + Optimiztion (Partial Sum)
+5) Relax			Ad Hock
+6) Ein				Shortest Path (Floyde)
+7) Football			Ad Hock
+8) Chairs			Equation || Augmented BST
+9) Whales			Recurssion
+10-) Races			Maps & Algorithm for Sorting - Presentation Error

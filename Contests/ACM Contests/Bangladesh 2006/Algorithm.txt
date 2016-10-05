@@ -1,0 +1,2 @@
+1) Mobile		Ad Hock
+2) Potentiometer	Segment Tree
